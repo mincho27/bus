@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 페이지</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>결제 페이지</h1>
+        <form id="payment-form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="card-number">카드 번호:</label>
+                <input type="text" id="card-number" name="card-number" required pattern="\d{16}" title="16자리 숫자를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">유효 기간 (MM/YY):</label>
+                <input type="text" id="expiry-date" name="expiry-date" required pattern="(0[1-9]|1[0-2])\/\d{2}" title="MM/YY 형식으로 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required pattern="\d{3}" title="3자리 숫자를 입력하세요">
+            </div>
+            <button type="submit" class="button2">결제하기</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+            
+            // 기본적인 유효성 검사
+            if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                alert('카드 번호는 16자리 숫자여야 합니다.');
+                return false;
+            }
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+                alert('유효 기간은 MM/YY 형식이어야 합니다.');
+                return false;
+            }
+            if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+                alert('CVV는 3자리 숫자여야 합니다.');
+                return false;
+            }
+            
+            // 결제 성공 시 리디렉션
+            alert('결제가 완료되었습니다.');
+            window.location.href = 'indexxx.html'; // 리디렉션할 페이지 이름 수정 필요
+            return false; // 실제 폼 제출 방지
+        }
+    </script>
+</body>
+</html>

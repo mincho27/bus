@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>완료</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            flex-direction: column;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        .button1 {
+            padding: 20px 30px;
+            font-size: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: hsl(0, 0%, 100%);
+            color: rgb(0, 0, 0);
+            transition: background-color 0.3s ease;
+        }
+        .button1:hover {
+            background-color: #c7c7c7;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>결제가 완료되었습니다.</h2>
+    <div class="button-container">
+        <button class="button1" onclick="completePayment()">돌아가기</button>
+    </div>
+
+    <script>
+        // 결제 완료 함수
+        function completePayment() {
+            alert("결제가 완료되었습니다.");
+            location.href = 'user.html';
+        }
+    </script>
+
+</body>
+
+</html>

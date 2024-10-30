@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버스 예약 시스템</title>
+    <style>
+        /* 스타일 그대로 유지 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            flex-direction: column;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        .button1, .button2, .button3, .button4 {
+            padding: 50px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #3c870d;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .button1:hover, .button2:hover, .button3:hover {
+            background-color: #2e690a;
+        }
+        .button4 {
+            padding: 20px 30px;
+            font-size: 10px;
+            background-color: #ff0000;
+        }
+        .button4:hover {
+            background-color: #5d0303;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>대덕훼미리아파트</h1>
+    <div class="button-container">
+        <button class="button1" onclick="reserveBus('첨단 20')">첨단 20</button>
+        <button class="button3" onclick="reserveBus('임곡 290')">임곡 290</button>
+        <button class="button4" onclick="cancelReservation()">예약 취소</button>
+    </div>
+
+    <script>
+
+        // 예약 함수
+        function reserveBus(route) {
+            if (localStorage.getItem("reserved")) {
+                alert("이미 예약한 버스가 있습니다");
+            } else {
+                localStorage.setItem("reserved", route);
+                alert(route + " 버스가 예약되었습니다.");
+                location.href = 'indexx.html';
+            }
+        }
+
+        // 예약 취소 함수
+        function cancelReservation() {
+            if (localStorage.getItem("reserved")) {
+                localStorage.removeItem("reserved");
+                alert("예약이 취소되었습니다.");
+            } else {
+                alert("예약된 버스가 없습니다.");
+            }
+        }
+    </script>
+
+</body>
+</html>

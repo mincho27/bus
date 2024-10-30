@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정류장 선택 페이지</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            flex-direction: column;
+        }
+
+        .button2 {
+            padding: 20px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #2fff00;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .button2:hover {
+            background-color: #28cc00; /* 변경된 색상 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>정류장을 선택하세요.</h1>
+        <form id="selection-form" onsubmit="redirectToPage(event)">
+            <div class="form-group">
+                <label for="name">정류장명:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <button class="button2" type="submit">선택</button>
+        </form>
+    </div>
+
+    <script>
+        function redirectToPage(event) {
+            event.preventDefault(); // 폼 기본 제출 동작 방지
+
+            const stationName = document.getElementById('name').value.trim();
+
+            // 입력된 정류장명에 따라 다른 페이지로 이동
+            if (stationName === "우산 중흥 S 클래스") {
+                window.location.href = "index.html";
+            } else if (stationName === "아리랑 고개") {
+                window.location.href = "index2.html";
+            } else if (stationName === "대덕 훼미리 아파트") {
+                window.location.href = "index3.html";
+            } else {
+                // 기본 페이지로 리디렉션 (해당 정류장이 없을 경우)
+                alert("해당 정류장이 존재하지 않습니다. 기본 페이지로 이동합니다.");
+                window.location.href = "user.html";
+            }
+        }
+    </script>
+</body>
+</html>
