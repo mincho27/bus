@@ -31,6 +31,12 @@
         .button2:hover {
             background-color: #28cc00; /* 변경된 색상 */
         }
+
+        .examples {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -40,6 +46,7 @@
             <div class="form-group">
                 <label for="name">정류장명:</label>
                 <input type="text" id="name" name="name" required>
+                <p class="examples">예: 우산 중흥 S 클래스, 아리랑 고개, 대덕 훼미리 아파트</p> <!-- 예시 정류장 -->
             </div>
             <button class="button2" type="submit">선택</button>
         </form>
@@ -49,17 +56,19 @@
         function redirectToPage(event) {
             event.preventDefault(); // 폼 기본 제출 동작 방지
 
-            const stationName = document.getElementById('name').value.trim();
+            const stationName = document.getElementById('name').value.trim().toLowerCase();
 
-            // 입력된 정류장명에 따라 다른 페이지로 이동
-            if (stationName === "우산 중흥 S 클래스") {
-                window.location.href = "index.html";
-            } else if (stationName === "아리랑 고개") {
-                window.location.href = "index2.html";
-            } else if (stationName === "대덕 훼미리 아파트") {
-                window.location.href = "index3.html";
+            // 정류장 이름과 링크를 객체로 저장
+            const stationPages = {
+                "우산 중흥 s 클래스": "index.html",
+                "아리랑 고개": "index2.html",
+                "대덕 훼미리 아파트": "index3.html"
+            };
+
+            // 정류장명이 객체에 있는지 확인 후 해당 페이지로 이동
+            if (stationPages[stationName]) {
+                window.location.href = stationPages[stationName];
             } else {
-                // 기본 페이지로 리디렉션 (해당 정류장이 없을 경우)
                 alert("해당 정류장이 존재하지 않습니다. 기본 페이지로 이동합니다.");
                 window.location.href = "user.html";
             }
