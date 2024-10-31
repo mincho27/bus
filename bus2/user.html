@@ -17,6 +17,11 @@
             flex-direction: column;
         }
 
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
         .button2 {
             padding: 20px 40px;
             font-size: 20px;
@@ -29,13 +34,11 @@
         }
 
         .button2:hover {
-            background-color: #28cc00; /* 변경된 색상 */
+            background-color: #28cc00;
         }
 
-        .examples {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
+        .form-group {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -44,9 +47,13 @@
         <h1>정류장을 선택하세요.</h1>
         <form id="selection-form" onsubmit="redirectToPage(event)">
             <div class="form-group">
-                <label for="name">정류장명:</label>
-                <input type="text" id="name" name="name" required>
-                <p class="examples">예: 우산 중흥 S 클래스, 아리랑 고개, 대덕 훼미리 아파트</p> <!-- 예시 정류장 -->
+                <label for="station">정류장명:</label>
+                <select id="station" name="station" required>
+                    <option value="">-------------</option>
+                    <option value="index.html">우산 중흥 S 클래스</option>
+                    <option value="index2.html">아리랑 고개</option>
+                    <option value="index3.html">대덕 훼미리 아파트</option>
+                </select>
             </div>
             <button class="button2" type="submit">선택</button>
         </form>
@@ -56,21 +63,12 @@
         function redirectToPage(event) {
             event.preventDefault(); // 폼 기본 제출 동작 방지
 
-            const stationName = document.getElementById('name').value.trim().toLowerCase();
+            const selectedPage = document.getElementById('station').value;
 
-            // 정류장 이름과 링크를 객체로 저장
-            const stationPages = {
-                "우산 중흥 s 클래스": "index.html",
-                "아리랑 고개": "index2.html",
-                "대덕 훼미리 아파트": "index3.html"
-            };
-
-            // 정류장명이 객체에 있는지 확인 후 해당 페이지로 이동
-            if (stationPages[stationName]) {
-                window.location.href = stationPages[stationName];
+            if (selectedPage) {
+                window.location.href = selectedPage;
             } else {
-                alert("해당 정류장이 존재하지 않습니다. 기본 페이지로 이동합니다.");
-                window.location.href = "user.html";
+                alert("-------------");
             }
         }
     </script>
