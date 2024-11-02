@@ -15,12 +15,26 @@
             background-color: #f0f0f0;
             flex-direction: column;
         }
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #3c870d;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2e690a;
+        }
     </style>
 </head>
 <body>
 
     <h1>버스 예약 확인</h1>
     <div id="message"></div>
+    <button onclick="completeRide()">탑승 완료</button>
 
     <script>
         window.onload = function() {
@@ -32,11 +46,14 @@
             } else {
                 document.getElementById("message").innerText = "예약된 버스가 없습니다.";
             }
+        }
 
-            // 페이지가 로드된 후 일정 시간 뒤에 정보 삭제 (선택 사항)
-            setTimeout(() => {
-                localStorage.removeItem("busInfo");
-            }, 5000); // 5초 후 정보 삭제
+        function completeRide() {
+            // 예약 정보 삭제
+            localStorage.removeItem("reserved");
+            localStorage.removeItem("busInfo");
+            alert("탑승이 완료되었습니다. 예약 기록이 삭제되었습니다.");
+            
         }
     </script>
 
