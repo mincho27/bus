@@ -54,10 +54,14 @@
     </div>
 
     <script>
-        function reserveBus(route) {
-            if (localStorage.getItem("reserved")) {
+        function reserveBus(route) 
+        {
+            if (localStorage.getItem("reserved")) 
+            {
                 alert("이미 예약한 버스가 있습니다");
-            } else {
+            } 
+            else 
+            {
                 localStorage.setItem("reserved", route);
                 alert(route + " 버스가 예약되었습니다.");
 
