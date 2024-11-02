@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>버스 예약 상태</title>
+    <title>RBUS20 예약 확인</title>
     <style>
         body {
             display: flex;
@@ -12,39 +12,32 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #f0f0f0;
             flex-direction: column;
-        }
-        h1 {
-            color: #333;
-        }
-        #reservation-status {
-            font-size: 20px;
-            color: #333;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <h1>예약 상태 확인</h1>
-    <div id="reservation-status">예약된 버스 정보가 없습니다.</div>
+    <h1>버스 예약 확인</h1>
+    <div id="message"></div>
 
     <script>
-        // 로컬 스토리지에서 예약 정보를 불러와 표시
-        function displayReservation() {
-            const reservedBus = localStorage.getItem("reserved");
+        window.onload = function() {
+            // 로컬 스토리지에서 예약 정보 확인
+            const busInfo = localStorage.getItem("busInfo");
 
-            const statusDiv = document.getElementById("reservation-status");
-            if (reservedBus) {
-                statusDiv.textContent = `예약된 버스: ${reservedBus}`;
+            if (busInfo) {
+                document.getElementById("message").innerText = "예약이 있습니다: " + busInfo;
             } else {
-                statusDiv.textContent = "예약된 버스 정보가 없습니다.";
+                document.getElementById("message").innerText = "예약된 버스가 없습니다.";
             }
-        }
 
-        // 페이지 로드 시 예약 상태 표시
-        window.onload = displayReservation;
+            // 페이지가 로드된 후 일정 시간 뒤에 정보 삭제 (선택 사항)
+            setTimeout(() => {
+                localStorage.removeItem("busInfo");
+            }, 5000); // 5초 후 정보 삭제
+        }
     </script>
 
 </body>
