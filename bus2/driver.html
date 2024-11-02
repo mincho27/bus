@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+    .login-container {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
+      font-size: 14px;
+      color: #333;
+    }
+    .input-field, .login-btn {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .input-field {
+      border: 1px solid #ddd;
+    }
+    .login-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .login-btn:hover {
+      background-color: #0056b3;
+    }
+    .options {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+    .options a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .options a:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>로그인</h2>
+  <form id="loginForm">
+    <label for="busNo">버스 NO</label>
+    <input type="text" id="busNo" class="input-field" placeholder="버스 NO" required>
+    
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" class="input-field" placeholder="비밀번호" required>
+    
+    <button type="button" class="login-btn" onclick="validateLogin()">로그인</button>
+  </form>
+  <div class="options">
+    <a href="/forgot-password">비밀번호를 잊으셨나요?</a>
+  </div>
+  <div id="error-message" class="error-message"></div>
+</div>
+
+<script>
+  function validateLogin() {
+    // 사전에 정의된 ID와 비밀번호 목록
+    const credentials = {
+      "첨단20": { password: "GAT", redirectUrl: "RBUS20.html" },
+      "송정33": { password: "GATT", redirectUrl: "RBUS33.html" },
+      "임곡290": { password: "GATTT", redirectUrl: "RBUS290.html" }
+    };
+
+    // 입력된 값 가져오기
+    const busNo = document.getElementById("busNo").value;
+    const password = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
+
+    // ID와 비밀번호가 일치하는지 확인
+    if (credentials[busNo] && credentials[busNo].password === password) {
+      // 일치하면 해당 페이지로 이동
+      window.location.href = credentials[busNo].redirectUrl;
+    } else {
+      // 일치하지 않으면 에러 메시지 표시
+      errorMessage.textContent = "버스 NO 또는 비밀번호가 올바르지 않습니다.";
+    }
+  }
+</script>
+
+</body>
+</html>
