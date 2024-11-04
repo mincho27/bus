@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버스 예약 확인</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>버스 예약 확인</h1>
+    <div id="message"></div>
+
+    <script>
+        window.onload = function() {
+            const reservedBus = localStorage.getItem("reserved");
+            const location = localStorage.getItem("location");
+
+            if (reservedBus === "임곡290" && location) {
+                document.getElementById("message").innerText = location + "에서 " + reservedBus + " 버스가 예약되었습니다.";
+            } else {
+                document.getElementById("message").innerText = "예약된 버스가 없습니다.";
+            }
+        }
+    </script>
+
+</body>
+</html>

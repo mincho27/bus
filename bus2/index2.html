@@ -48,8 +48,8 @@
 
     <h1>아리랑고개</h1>
     <div class="button-container">
-        <button class="button1" onclick="reserveBus('첨단 20')">첨단 20</button>
-        <button class="button2" onclick="reserveBus('송정 33')">송정 33</button>
+        <button class="button1" onclick="reserveBus('첨단20', '아리랑 고개')" onclick="reserveBus2('첨단20')">첨단20</button>
+        <button class="button1" onclick="reserveBus('송정33','아리랑 고개')" onclick="reserveBus2('송정33')">송정33</button>
         <button class="button4" onclick="cancelReservation()">예약 취소</button>
     </div>
 
@@ -74,6 +74,17 @@
             } else {
                 alert("예약된 버스가 없습니다.");
             }
+
+            function reserveBus2(route, location) {
+            if (localStorage.getItem("reserved")) {
+                alert("이미 예약한 버스가 있습니다");
+            } else {
+                localStorage.setItem("reserved", route);
+                localStorage.setItem("location", location);
+                alert(route + " 버스가 예약되었습니다.");
+                location.href = 'RBUS20.html','RBUS30','RBUS290';
+            }
+        }
         }
     </script>
 

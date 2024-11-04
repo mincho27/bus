@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBUS20 예약 확인</title>
+    <title>버스 예약 확인</title>
     <style>
         body {
             display: flex;
@@ -15,45 +15,23 @@
             background-color: #f0f0f0;
             flex-direction: column;
         }
-        button {
-            padding: 15px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #3c870d;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #2e690a;
-        }
     </style>
 </head>
 <body>
 
     <h1>버스 예약 확인</h1>
     <div id="message"></div>
-    <button onclick="completeRide()">탑승 완료</button>
 
     <script>
         window.onload = function() {
-            // 로컬 스토리지에서 예약 정보 확인
-            const busInfo = localStorage.getItem("busInfo");
+            const reservedBus = localStorage.getItem("reserved");
+            const location = localStorage.getItem("location");
 
-            if (busInfo) {
-                document.getElementById("message").innerText = "예약이 있습니다: " + busInfo;
+            if (reservedBus === "첨단20" && location) {
+                document.getElementById("message").innerText = location + "에서 " + reservedBus + " 버스가 예약되었습니다.";
             } else {
                 document.getElementById("message").innerText = "예약된 버스가 없습니다.";
             }
-        }
-
-        function completeRide() {
-            // 예약 정보 삭제
-            localStorage.removeItem("reserved");
-            localStorage.removeItem("busInfo");
-            alert("탑승이 완료되었습니다. 예약 기록이 삭제되었습니다.");
-            
         }
     </script>
 

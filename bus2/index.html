@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>버스 예약 시스템</title>
     <style>
+        /* 스타일 그대로 유지 */
         body {
             display: flex;
             justify-content: center;
@@ -47,38 +48,53 @@
 
     <h1>우산동 중흥 S 클래스</h1>
     <div class="button-container">
-        <button class="button1" onclick="reserveBus('첨단 20')">첨단 20</button>
-        <button class="button2" onclick="reserveBus('송정 33')">송정 33</button>
-        <button class="button3" onclick="reserveBus('임곡 290')">임곡 290</button>
+        <button class="button1" onclick="reserveBus('첨단20', '우산동 중흥 S 클래스')" onclick="reserveBus2('첨단20')">첨단 20</button>
+        <button class="button1" onclick="reserveBus('송정33','우산동 중흥 S 클래스')" onclick="reserveBus2('송정33')">송정 33</button>
+        <button class="button1" onclick="reserveBus('임곡290','우산동 중흥 S 클래스')" onclick="reserveBus2('임곡290')">임곡290</button>
         <button class="button4" onclick="cancelReservation()">예약 취소</button>
     </div>
 
     <script>
+
+        // 예약 함수
         function reserveBus(route) {
-            if (localStorage.getItem("reserved")) {
+            if (localStorage.getItem("reserved")) 
+            {
                 alert("이미 예약한 버스가 있습니다");
-            } else {
+            } 
+            else 
+            {
                 localStorage.setItem("reserved", route);
                 alert(route + " 버스가 예약되었습니다.");
-
-                // "첨단 20" 버튼 클릭 시 정보 저장
-                if (route === '첨단 20') {
-                    localStorage.setItem("busInfo", "첨단 20 버튼이 눌렸습니다.");
-                }
-
-                // 페이지 이동
                 location.href = 'indexx.html';
             }
         }
 
-        function cancelReservation() {
+        // 예약 취소 함수
+        function cancelReservation() 
+        {
             if (localStorage.getItem("reserved")) {
                 localStorage.removeItem("reserved");
-                localStorage.removeItem("busInfo"); // 예약 취소 시 정보 삭제
                 alert("예약이 취소되었습니다.");
             } else {
                 alert("예약된 버스가 없습니다.");
             }
+
+            function reserveBus2(route, location) 
+            {
+                if (localStorage.getItem("reserved")) 
+                {
+                alert("이미 예약한 버스가 있습니다");
+                } 
+                else 
+                {
+                localStorage.setItem("reserved", route);
+                localStorage.setItem("location", location);
+                alert(route + " 버스가 예약되었습니다.");
+                location.href = 'RBUS20.html','RBUS30','RBUS290';
+                }
+            }
+
         }
     </script>
 
